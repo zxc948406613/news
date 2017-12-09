@@ -1,0 +1,48 @@
+
+    <?php
+
+    //分页的函数
+    function news($pageNum = 1, $pageSize = 3)
+    {
+        $array = array();
+        $coon = mysqli_connect("localhost", "root",'root','test');
+        // limit为约束显示多少条信息，后面有两个参数，第一个为从第几个开始，第二个为长度
+        $rs = "select * from chengji where xuehao >='150100' and xuehao <150200 limit " . (($pageNum - 1) * $pageSize) . "," . $pageSize;
+        $r = mysqli_query($coon, $rs);
+        while ($obj = mysqli_fetch_object($r)) {
+            $array[] = $obj;
+        }
+        mysqli_close($coon);
+        return $array;
+    }
+
+    //显示总页数的函数
+    function allNews()
+    {
+        $coon = mysqli_connect("localhost", "root",'root','test');
+        $rs = "select count(*) num from chengji"; //可以显示出总页数
+        $r = mysqli_query($coon, $rs);
+        $obj = mysqli_fetch_object($r);
+        mysqli_close($coon);
+        return $obj->num;
+    }
+
+    @$allNum = allNews();
+    @$pageSize = 3; //约定没页显示几条信息
+    @$pageNum = empty($_GET["pageNum"])?1:$_GET["pageNum"];
+    @$endPage = ceil($allNum/$pageSize); //总页数
+    @$array = news($pageNum,$pageSize);
+    ?>
+
+
+
+
+<div>
+    <a href="?pageNum=1">首页</a>
+    <a href="?pageNum=<?php echo $pageNum==1?1:($pageNum-1)?>">上一页</a>
+    <a href="?pageNum=<?php echo $pageNum==$endPage?$endPage:($pageNum+1)?>">下一页</a>
+    <a href="?pageNum=<?php echo $endPage?>">尾页</a>
+
+</div>
+
+

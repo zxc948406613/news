@@ -1,0 +1,189 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 2017-12-02 08:21:26
+-- 服务器版本： 5.6.17
+-- PHP Version: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `news`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ad`
+--
+
+CREATE TABLE IF NOT EXISTS `ad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `picture` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(40) COLLATE utf8_bin DEFAULT NULL,
+  `content` text COLLATE utf8_bin,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `power` int(11) DEFAULT NULL,
+  `introduce` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `motto` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `adminrecord`
+--
+
+CREATE TABLE IF NOT EXISTS `adminrecord` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `person` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `date` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `comment`
+--
+
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8_bin NOT NULL,
+  `data` varchar(40) COLLATE utf8_bin NOT NULL,
+  `title` varchar(40) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `downrecord`
+--
+
+CREATE TABLE IF NOT EXISTS `downrecord` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `person` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `date` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) COLLATE utf8_bin NOT NULL,
+  `type` varchar(20) COLLATE utf8_bin NOT NULL,
+  `picture` varchar(100) COLLATE utf8_bin NOT NULL,
+  `content` text COLLATE utf8_bin NOT NULL,
+  `author` varchar(30) COLLATE utf8_bin NOT NULL,
+  `time` varchar(40) COLLATE utf8_bin NOT NULL,
+  `status` int(11) NOT NULL,
+  `keyword` varchar(30) COLLATE utf8_bin NOT NULL,
+  `short` tinytext COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `news`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `newsrecord`
+--
+
+CREATE TABLE IF NOT EXISTS `newsrecord` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `date` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `content` varchar(40) COLLATE utf8_bin DEFAULT NULL,
+  `keyword` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `newstype`
+--
+
+CREATE TABLE IF NOT EXISTS `newstype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `sharerecord`
+--
+
+CREATE TABLE IF NOT EXISTS `sharerecord` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(40) COLLATE utf8_bin DEFAULT NULL,
+  `person` varchar(40) COLLATE utf8_bin DEFAULT NULL,
+  `date` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `vip`
+--
+
+CREATE TABLE IF NOT EXISTS `vip` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8_bin NOT NULL,
+  `status` int(11) NOT NULL,
+  `accumulation` int(11) NOT NULL,
+  `date` varchar(30) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `viprecord`
+--
+
+CREATE TABLE IF NOT EXISTS `viprecord` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `person` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `date` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
